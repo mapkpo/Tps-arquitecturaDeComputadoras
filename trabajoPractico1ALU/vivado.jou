@@ -1,0 +1,29 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Thu Aug 27 21:05:00 2026
+# Process ID         : 13832
+# Current directory  : C:/Users/Misha/Desktop/trabajoPractico1ALU
+# Command line       : vivado.exe -gui_launcher_event rodinguilauncherevent23568 C:\Users\Misha\Desktop\trabajoPractico1ALU\trabajoPractico1ALU.xpr
+# Log file           : C:/Users/Misha/Desktop/trabajoPractico1ALU/vivado.log
+# Journal file       : C:/Users/Misha/Desktop/trabajoPractico1ALU\vivado.jou
+# Running On         : DESKTOP-POAFI82
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 19045
+# Processor Detail   : AMD Ryzen 5 5600 6-Core Processor              
+# CPU Frequency      : 3500 MHz
+# CPU Physical cores : 6
+# CPU Logical cores  : 12
+# Host memory        : 34282 MB
+# Swap memory        : 3459 MB
+# Total Virtual      : 37741 MB
+# Available Virtual  : 15661 MB
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/Misha/Desktop/trabajoPractico1ALU/trabajoPractico1ALU.xpr
+update_compile_order -fileset sources_1
+reset_run impl_1 -prev_step 
+launch_runs impl_1 -to_step write_bitstream -jobs 12
+wait_on_run impl_1
