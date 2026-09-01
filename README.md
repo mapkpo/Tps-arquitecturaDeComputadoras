@@ -25,7 +25,40 @@ Y a la salida el resultado será mostrado en los leds de la placa, posicionados 
 
 ## 3. Arquitectura implementada
 ### 3.1. Módulo ALU
-### 3.2. Módulo flip flop D
+### 3.2. Módulo flip flop D 
+Este modela los flip flop que se encargar de mantener la informacion de entrada tanto de los dos 
+buses de datos como del codigo de operacion.
+```verilog
+module reg_nbits #(
+    parameter NB_BITS = 8
+)(
+    input wire                 i_clk,
+    input wire                 i_enable,
+    input wire [NB_BITS-1:0]   i_D,
+
+    output reg [NB_BITS-1:0]   o_Q
+);
+
+    initial begin
+        o_Q = {NB_BITS{1'b0}};
+    end
+
+    always @(posedge i_clk) begin
+
+        if (i_enable)
+            o_Q <= i_D;
+    end
+
+endmodule
+```
+Tenemos dos señales de entrada y ambos buses parametrizables de entrada y salida.
+La señal de clock para sincronizar el FF, el enable para activarlo y guardar el dato que tiene
+en la entrada en los switch.
+Dentro del bloque always tenemos configurado para que funcione con el clock en flanco ascendente y
+en caso de estar también la señal de enable mapeada a un botón se tomara la entrada de los swithches y 
+estará guardada en la salida del FF y entrada de la ALU.
+
+
 ### 3.3. Módulo Top
 
 ## 4. Operaciones implementadas
