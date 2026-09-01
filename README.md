@@ -25,7 +25,7 @@ Y a la salida el resultado será mostrado en los leds de la placa, posicionados 
 
 ## 3. Arquitectura implementada
 ### 3.1. Módulo ALU
-### 3.2. Registro parametrizable
+### 3.2. Módulo flip flop D
 ### 3.3. Módulo Top
 
 ## 4. Operaciones implementadas
