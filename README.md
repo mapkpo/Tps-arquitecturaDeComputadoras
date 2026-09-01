@@ -20,7 +20,18 @@ Una ALU (unidad lógica aritmetica) la cual cuenta con 8 operaciones diferentes 
 realizar con los datos.   <br>
 Y a la salida el resultado será mostrado en los leds de la placa, posicionados sobre los swithches.
 <img width="883" height="644" alt="image" src="https://github.com/user-attachments/assets/56a8d3ef-5268-4ab3-b3db-1794d047e4f0" />
-
+<br> <br>
+Las operaciones soportadas por la ALU con sus respectivos códigos son:
+```
+ADD    100000
+SUB    100010
+AND    100100
+OR     100101
+XOR    100110
+SRA    000011
+SRL    000010
+NOR    100111
+```
 
 
 ## 3. Arquitectura implementada
