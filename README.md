@@ -217,6 +217,11 @@ Instanciar ALU:
 ## 7. Síntesis e implementación
 
 ## 8. Análisis temporal
+El análisis temporal realizado en Vivado muestra que todas las restricciones temporales se cumplen, sin violaciones de setup (dato que llega demasiado tarde al flip-flop) ni hold (dato que cambia demasiado rápido después del flanco). No se registraron endpoints fallidos y el diseño presenta un margen positivo en el ancho de pulso, por lo que puede implementarse correctamente con el reloj definido.
+<img width="969" height="253" alt="image" src="https://github.com/user-attachments/assets/b8a16f45-1e4e-48cb-af5a-cf11c4a46766" />
+
+El valor obtenido WPWS = 4,5 ns, nos indica que en el peor caso de ancho de pulso todavía posee un margen positivo de 4,5 ns respecto del mínimo requerido por la FPGA.
+
 
 ## 9. Conclusiones
 
