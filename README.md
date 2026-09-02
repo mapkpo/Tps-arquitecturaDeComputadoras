@@ -328,3 +328,7 @@ El valor obtenido WPWS = 4,5 ns, nos indica que en el peor caso de ancho de puls
 ## 8. Pruebas en placa
 
 
+https://github.com/user-attachments/assets/912f7ccd-9aee-4a29-8292-66525c565ff2
+
+
+
