@@ -1,4 +1,4 @@
-# Informe trabajo práctico nº 1 de arquitectura de computadoras 2026
+# Informe de trabajo práctico Nº 1 de arquitectura de computadoras 2026
 ### Profesor: Alonso Pereyra Martín
 ###  Estudiantes: Potinski Mijail Andrés, Cisneros Tomás Alejo.
 
