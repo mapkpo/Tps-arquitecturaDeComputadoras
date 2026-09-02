@@ -1,5 +1,5 @@
 # Informe trabajo práctico nº 1 de arquitectura de computadoras 2026
-### Profesor: Alonso Pereyra
+### Profesor: Alonso Pereyra Martín
 ###  Estudiantes: Potinski Mijail Andrés, Cisneros Tomás Alejo.
 
 <br>
@@ -36,32 +36,35 @@ NOR    100111
 
 ## 3. Arquitectura implementada
 ### 3.1. Módulo ALU
-### 3.2. Módulo flip flop D 
+*C* contiene el resultado de la operación seleccionada, *zero* indica si ese resultado es, justamente, cero, *carry* señala la presencia de acarreo en operaciones aritméticas y *overflow* indica que el resultado con signo excede el rango representable.
+### 3.2. Módulo reg_nbits 
 Este modela los flip flop que se encargar de mantener la informacion de entrada tanto de los dos 
 buses de datos como del codigo de operacion.
+
 ```verilog
-module reg_nbits #(
-    parameter NB_BITS = 8
-)(
-    input wire                 i_clk,
-    input wire                 i_enable,
-    input wire [NB_BITS-1:0]   i_D,
+MÓDULO reg_nbits
 
-    output reg [NB_BITS-1:0]   o_Q
-);
+Parámetro:
+    NB_BITS = cantidad de bits del registro
 
-    initial begin
-        o_Q = {NB_BITS{1'b0}};
-    end
+Entradas:
+    clk
+    enable
+    D
 
-    always @(posedge i_clk) begin
+Salida:
+    Q
 
-        if (i_enable)
-            o_Q <= i_D;
-    end
+Al inicio:
+    Q = 0
 
-endmodule
+En cada flanco ascendente del clock:
+    si enable = 1:
+        Q = D
+    si enable = 0:
+        Q mantiene su valor anterior
 ```
+
 Tenemos dos señales de entrada y ambos buses parametrizables de entrada y salida.
 La señal de clock para sincronizar el FF, el enable para activarlo y guardar el dato que tiene
 en la entrada en los switch.
@@ -72,7 +75,79 @@ estará guardada en la salida del FF y entrada de la ALU.
 
 ### 3.3. Módulo Top
 
+Nuestro módulo top integra una ALU y tres instancias del módulo parametrizable reg_nbits. Dos instancias se usan para almacenar los operandos REG_A y REG_B, configuradas con un ancho de 8 bits, y una tercera instancia almacena REG_OP, configurada con un ancho de 6 bits. Luego, las salidas de esos registros se conectan a las entradas correspondientes de la ALU, de manera que la ALU opere con los valores previamente cargados.
+
+```verilog
+MÓDULO ALU
+
+Entradas:
+    A
+    B
+    operación
+
+Salidas:
+    C
+    zero
+    carry
+    overflow
+
+Variable auxiliar:
+    aux  // un bit más que A y B para detectar carry
+
+Siempre que cambie alguna entrada:
+
+    Inicializar:
+        C = 0
+        carry = 0
+        overflow = 0
+        aux = 0
+
+    Según operación:
+
+        ADD:
+            aux = A + B
+            C = resultado
+            carry = bit extra de aux
+            calcular overflow
+
+        SUB:
+            aux = A - B
+            C = resultado
+            carry = bit extra de aux
+            calcular overflow
+
+        AND:
+            C = A AND B
+
+        OR:
+            C = A OR B
+
+        XOR:
+            C = A XOR B
+
+        SRA:
+            C = desplazamiento aritmético a derecha de A
+
+        SRL:
+            C = desplazamiento lógico a derecha de A
+
+        NOR:
+            C = NOT(A OR B)
+
+        DEFAULT:
+            C = 0
+
+    Si C == 0:
+        zero = 1
+    sino:
+        zero = 0
+```
+
+En este modulo, las señales *C, zero, carry y overflow* forman parte de la salida de la ALU y representan el resultado y sus banderas de estado. Nuestro modulo simplemente conecta estas salidas de la ALU con las señales internas o externas correspondientes del sistema, en este caso, LEDS.
+
 ## 4. Operaciones implementadas
+
+
 
 ## 5. Implementación sobre Basys 3
 ### 5.1. Carga de operandos
