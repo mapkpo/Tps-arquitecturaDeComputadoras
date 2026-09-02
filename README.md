@@ -36,46 +36,8 @@ NOR    100111
 
 ## 3. Arquitectura implementada
 ### 3.1. Módulo ALU
-*C* contiene el resultado de la operación seleccionada, *zero* indica si ese resultado es, justamente, cero, *carry* señala la presencia de acarreo en operaciones aritméticas y *overflow* indica que el resultado con signo excede el rango representable.
-### 3.2. Módulo reg_nbits 
-Este modela los flip flop que se encargar de mantener la informacion de entrada tanto de los dos 
-buses de datos como del codigo de operacion.
 
-```verilog
-MÓDULO reg_nbits
-
-Parámetro:
-    NB_BITS = cantidad de bits del registro
-
-Entradas:
-    clk
-    enable
-    D
-
-Salida:
-    Q
-
-Al inicio:
-    Q = 0
-
-En cada flanco ascendente del clock:
-    si enable = 1:
-        Q = D
-    si enable = 0:
-        Q mantiene su valor anterior
-```
-
-Tenemos dos señales de entrada y ambos buses parametrizables de entrada y salida.
-La señal de clock para sincronizar el FF, el enable para activarlo y guardar el dato que tiene
-en la entrada en los switch.
-Dentro del bloque always tenemos configurado para que funcione con el clock en flanco ascendente y
-en caso de estar también la señal de enable mapeada a un botón se tomara la entrada de los swithches y 
-estará guardada en la salida del FF y entrada de la ALU.
-
-
-### 3.3. Módulo Top
-
-Nuestro módulo top integra una ALU y tres instancias del módulo parametrizable reg_nbits. Dos instancias se usan para almacenar los operandos REG_A y REG_B, configuradas con un ancho de 8 bits, y una tercera instancia almacena REG_OP, configurada con un ancho de 6 bits. Luego, las salidas de esos registros se conectan a las entradas correspondientes de la ALU, de manera que la ALU opere con los valores previamente cargados.
+La ALU es un módulo combinacional que recibe dos operandos, `A` y `B`, junto con un código de operación que determina qué cálculo realizar. Según ese código, puede ejecutar suma, resta, operaciones lógicas como AND, OR, XOR y NOR, o desplazamientos a derecha. El resultado se entrega en `C`, mientras que las señales `zero`, `carry` y `overflow` informan condiciones especiales del resultado. Para suma y resta se utiliza una variable auxiliar de un bit extra, que permite detectar el acarreo. Como es lógica combinacional, cada vez que cambia alguna entrada se recalculan inmediatamente el resultado y las banderas.
 
 ```verilog
 MÓDULO ALU
@@ -143,7 +105,99 @@ Siempre que cambie alguna entrada:
         zero = 0
 ```
 
-En este modulo, las señales *C, zero, carry y overflow* forman parte de la salida de la ALU y representan el resultado y sus banderas de estado. Nuestro modulo simplemente conecta estas salidas de la ALU con las señales internas o externas correspondientes del sistema, en este caso, LEDS.
+
+### 3.2. Módulo reg_nbits 
+Este modela los flip flop que se encargar de mantener la informacion de entrada tanto de los dos 
+buses de datos como del codigo de operacion.
+
+```verilog
+MÓDULO reg_nbits
+
+Parámetro:
+    NB_BITS = cantidad de bits del registro
+
+Entradas:
+    clk
+    enable
+    D
+
+Salida:
+    Q
+
+Al inicio:
+    Q = 0
+
+En cada flanco ascendente del clock:
+    si enable = 1:
+        Q = D
+    si enable = 0:
+        Q mantiene su valor anterior
+```
+
+Tenemos dos señales de entrada y ambos buses parametrizables de entrada y salida.
+La señal de clock para sincronizar el FF, el enable para activarlo y guardar el dato que tiene
+en la entrada en los switch.
+Dentro del bloque always tenemos configurado para que funcione con el clock en flanco ascendente y
+en caso de estar también la señal de enable mapeada a un botón se tomara la entrada de los swithches y 
+estará guardada en la salida del FF y entrada de la ALU.
+
+
+### 3.3. Módulo Top
+
+El módulo top es el encargado de integrar todo el sistema. Recibe el reloj, los switches y los botones, y utiliza tres instancias del mismo módulo de registro parametrizable. Dos de esas instancias, REG_A y REG_B, están configuradas para almacenar operandos de 8 bits, mientras que REG_OP está configurado para guardar un código de operación de 6 bits. La ventaja de usar un registro parametrizable es que se reutiliza el mismo diseño de hardware cambiando únicamente el ancho de los datos que debe almacenar.
+
+Los valores se ingresan mediante los switches y cada botón habilita la carga de un registro distinto: un botón carga A, otro carga B y otro carga la operación. Luego, las salidas de esos registros se conectan a la ALU. La ALU toma A, B y el código de operación, realiza la operación correspondiente y entrega el resultado en los LEDs, junto con las señales de estado zero, carry y overflow.
+
+```verilog
+MÓDULO TOP
+
+Parámetro:
+    NB_BITS = 8
+
+Entradas:
+    clk
+    switches
+    botón A
+    botón B
+    botón OP
+
+Salidas:
+    leds
+    zero
+    carry
+    overflow
+
+Señales internas:
+    A
+    B
+    op
+
+Instanciar REG_A:
+    ancho = NB_BITS
+    si botón A está activo en un flanco de clk:
+        guardar switches en A
+
+Instanciar REG_B:
+    ancho = NB_BITS
+    si botón B está activo en un flanco de clk:
+        guardar switches en B
+
+Instanciar REG_OP:
+    ancho = 6
+    si botón OP está activo en un flanco de clk:
+        guardar los 6 bits menos significativos de switches en op
+
+Instanciar ALU:
+    entrada A = A
+    entrada B = B
+    operación = op
+
+    resultado -> leds
+    zero -> o_zero
+    carry -> o_carry
+    overflow -> o_overflow
+
+```
 
 ## 4. Operaciones implementadas
 
