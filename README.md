@@ -222,12 +222,14 @@ Instanciar ALU:
 
 ## 5.2. Implementación en placa
 Mediante el uso de un archivo de constrains se han seleccionado los siguientes botones, leds y switches.
-<img width="600" height="376" alt="basys-3-2" src="https://github.com/user-attachments/assets/4bd95b72-2fb7-46a4-824c-b82eb227b8e9" />
+<img width="600" height="376" alt="basys-3-2" src="https://github.com/user-attachments/assets/1e81221d-60f4-48c8-936f-fc002a9ad9ab" />
 
 
-### 5.3. Carga de operandos
+
+### 5.3. Carga/Limpieza de operandos
 La carga de los operandos se hace mediante primero su seleccion de bits en los switches W13 a v17, y luego presionando el boton del operando deseado
 sea A o B, mapeados en las teclas izquierda y centro del pad.
+Con la tecla de arriba del pad podemos ejecutar un reset en los Flip Flop seteandolos en cero.
 ### 5.4. Selección de operación
 La carga de la operacion se realiza de la misma manera que los operandos pero ahora presionando el boton de OP, mapeado en la tecla derecha del pad.
 ### 5.5. Visualización del resultado y flags
