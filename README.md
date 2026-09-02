@@ -204,31 +204,53 @@ Instanciar ALU:
 
 
 ## 5. Implementación sobre Basys 3
-## Esquemático
+## 5.1. Esquemático
 
 <img width="1762" height="916" alt="image" src="https://github.com/user-attachments/assets/11107f98-3289-4e47-a204-5158d432bd5e" />
 
 <img width="2592" height="942" alt="image" src="https://github.com/user-attachments/assets/bd669914-6bb0-4e04-ae40-fe377f450131" />
 
-## Implementación en placa
+## 5.2. Implementación en placa
 Mediante el uso de un archivo de constrains se han seleccionado los siguientes botones, leds y switches.
 <img width="600" height="376" alt="basys-3-2" src="https://github.com/user-attachments/assets/4bd95b72-2fb7-46a4-824c-b82eb227b8e9" />
 
 
-### 5.1. Carga de operandos
+### 5.3. Carga de operandos
 La carga de los operandos se hace mediante primero su seleccion de bits en los switches W13 a v17, y luego presionando el boton del operando deseado
 sea A o B, mapeados en las teclas izquierda y centro del pad.
-### 5.2. Selección de operación
+### 5.4. Selección de operación
 La carga de la operacion se realiza de la misma manera que los operandos pero ahora presionando el boton de OP, mapeado en la tecla derecha del pad.
-### 5.3. Visualización del resultado y flags
+### 5.5. Visualización del resultado y flags
 Para el muestreo del resultado de la operación se hacen uso de los leds del lado derecho de la placa, agregando 3 leds intercalados del lado izquierdo 
 para mostrar las flags de resultado cero, carry y overflow. Notese que al iniciar el programa la flag de cero estará encendida.
 
 ## 6. Verificación
 ### 6.1. Testbench
+Se ha realizado un testbench tanto para el componente de la ALU como para el top en su totalidad, combinando test dirigidos con parametros seteados asi
+como una bateria de tests con valores random.
+
 ### 6.2. Pruebas dirigidas
+Ejemplo de un test dirigido de suma, en este caso estamos cargando 10 en A y 5 en B, el resultado esperado es 15.
+```
+
+        cargar_A(8'd10);
+        cargar_B(8'd5);
+        cargar_OP(6'b100000);
+
+        comprobar(
+            8'd15,
+            1'b0,
+            1'b0,
+            1'b0
+        );
+```
+Como podemos observar el resultado es correcto: <img width="1535" height="322" alt="image" src="https://github.com/user-attachments/assets/4b6270bd-9334-4d39-9654-91a42d3060d9" />
+
 ### 6.3. Pruebas aleatorias
 ### 6.4. Resultados de simulación
+<img width="3118" height="670" alt="image" src="https://github.com/user-attachments/assets/2c9e8ea2-c4dd-4a20-b0e3-6180fa18336a" />
+
+
 
 
 
