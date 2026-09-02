@@ -208,6 +208,9 @@ Instanciar ALU:
 
 <img width="1762" height="916" alt="image" src="https://github.com/user-attachments/assets/11107f98-3289-4e47-a204-5158d432bd5e" />
 
+<img width="2592" height="942" alt="image" src="https://github.com/user-attachments/assets/bd669914-6bb0-4e04-ae40-fe377f450131" />
+
+
 ### 5.1. Carga de operandos
 ### 5.2. Selección de operación
 ### 5.3. Visualización del resultado y flags
