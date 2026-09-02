@@ -215,9 +215,10 @@ Instanciar ALU:
 ## 5. Implementación sobre Basys 3
 ## 5.1. Esquemático
 
-<img width="1762" height="916" alt="image" src="https://github.com/user-attachments/assets/11107f98-3289-4e47-a204-5158d432bd5e" />
+<img width="1740" height="925" alt="image" src="https://github.com/user-attachments/assets/f3ba95d7-e0ba-48a8-8b5b-5c390396696d" />
 
-<img width="2592" height="942" alt="image" src="https://github.com/user-attachments/assets/bd669914-6bb0-4e04-ae40-fe377f450131" />
+<img width="3119" height="1112" alt="image" src="https://github.com/user-attachments/assets/0358a47e-3a4d-48f3-8cd8-8275a8b2dcef" />
+
 
 ## 5.2. Implementación en placa
 Mediante el uso de un archivo de constrains se han seleccionado los siguientes botones, leds y switches.
