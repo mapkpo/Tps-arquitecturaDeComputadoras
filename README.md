@@ -232,7 +232,6 @@ como una bateria de tests con valores random.
 ### 6.2. Pruebas dirigidas
 Ejemplo de un test dirigido de suma, en este caso estamos cargando 10 en A y 5 en B, el resultado esperado es 15.
 ```
-
         cargar_A(8'd10);
         cargar_B(8'd5);
         cargar_OP(6'b100000);
@@ -247,11 +246,65 @@ Ejemplo de un test dirigido de suma, en este caso estamos cargando 10 en A y 5 e
 Como podemos observar el resultado es correcto: <img width="1535" height="322" alt="image" src="https://github.com/user-attachments/assets/4b6270bd-9334-4d39-9654-91a42d3060d9" />
 
 ### 6.3. Pruebas aleatorias
+Los tests aleatorios utilizan la función random para generar valores numéricos aleatorios.
+```
+             random_A = $random;
+            random_B = $random;
+
+            // Selección aleatoria entre 0 y 7
+            sel = $random & 32'h7;
+
+
+            // Valores esperados por defecto
+            expected_C        = {NB_BITS{1'b0}};
+            expected_aux      = {(NB_BITS+1){1'b0}};
+            expected_carry    = 1'b0;
+            expected_overflow = 1'b0;
+
+
+            // =================================
+            // Seleccionar operación
+            // =================================
+
+            case (sel)
+
+
+                // =============================
+                // ADD
+                // =============================
+
+                0: begin
+
+                    random_op = 6'b100000;
+
+                    expected_aux =
+                        {1'b0, random_A}
+                        +
+                        {1'b0, random_B};
+
+                    expected_C =
+                        expected_aux[NB_BITS-1:0];
+
+                    expected_carry =
+                        expected_aux[NB_BITS];
+
+                    expected_overflow =
+                        (~(
+                            random_A[NB_BITS-1]
+                            ^
+                            random_B[NB_BITS-1]
+                        ))
+                        &
+                        (
+                            expected_C[NB_BITS-1]
+                            ^
+                            random_A[NB_BITS-1]
+                        );
+
+                end
+```
 ### 6.4. Resultados de simulación
 <img width="3118" height="670" alt="image" src="https://github.com/user-attachments/assets/2c9e8ea2-c4dd-4a20-b0e3-6180fa18336a" />
-
-
-
 
 
 ## 7. Análisis temporal
@@ -259,7 +312,6 @@ El análisis temporal realizado en Vivado muestra que todas las restricciones te
 <img width="969" height="253" alt="image" src="https://github.com/user-attachments/assets/b8a16f45-1e4e-48cb-af5a-cf11c4a46766" />
 
 El valor obtenido WPWS = 4,5 ns, nos indica que en el peor caso de ancho de pulso todavía posee un margen positivo de 4,5 ns respecto del mínimo requerido por la FPGA.
-
 
 ## 8. Pruebas en placa
 
