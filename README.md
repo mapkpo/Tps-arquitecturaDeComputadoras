@@ -201,7 +201,16 @@ Instanciar ALU:
 
 ## 4. Operaciones implementadas
 
-
+| Operación | Código | Qué hace | Descripción breve | Ejemplo |
+|---|---|---|---|---|
+| **ADD** | `100000` | `A + B` | Suma los dos operandos. Puede generar `carry` y `overflow`. | `3 + 2 = 5` |
+| **SUB** | `100010` | `A - B` | Resta `B` a `A`. Puede generar `carry` y `overflow`. | `7 - 3 = 4` |
+| **AND** | `100100` | `A AND B` | Da `1` en cada posición donde ambos bits sean `1`. | `1100 AND 1010 = 1000` |
+| **OR** | `100101` | `A OR B` | Da `1` cuando al menos uno de los dos bits es `1`. | `1100 OR 1010 = 1110` |
+| **XOR** | `100110` | `A XOR B` | Da `1` cuando los bits comparados son distintos. | `1100 XOR 1010 = 0110` |
+| **SRA** | `000011` | Desplazamiento aritmético a derecha | Desplaza `A` a la derecha conservando el bit de signo. | `11111000 >>> 1 = 11111100` |
+| **SRL** | `000010` | Desplazamiento lógico a derecha | Desplaza `A` a la derecha e introduce ceros por la izquierda. | `11111000 >> 1 = 01111100` |
+| **NOR** | `100111` | `NOT(A OR B)` | Realiza un OR y luego invierte todos los bits del resultado. | `1100 NOR 1010 = 0001` |
 
 ## 5. Implementación sobre Basys 3
 ## 5.1. Esquemático
