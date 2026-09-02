@@ -120,6 +120,7 @@ Entradas:
     clk
     enable
     D
+    rst
 
 Salida:
     Q
@@ -128,6 +129,8 @@ Al inicio:
     Q = 0
 
 En cada flanco ascendente del clock:
+    si reset = 1:
+        Q = 0
     si enable = 1:
         Q = D
     si enable = 0:
