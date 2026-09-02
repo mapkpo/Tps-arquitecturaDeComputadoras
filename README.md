@@ -204,16 +204,25 @@ Instanciar ALU:
 
 
 ## 5. Implementación sobre Basys 3
-# Esquemático
+## Esquemático
 
 <img width="1762" height="916" alt="image" src="https://github.com/user-attachments/assets/11107f98-3289-4e47-a204-5158d432bd5e" />
 
 <img width="2592" height="942" alt="image" src="https://github.com/user-attachments/assets/bd669914-6bb0-4e04-ae40-fe377f450131" />
 
+## Implementación en placa
+Mediante el uso de un archivo de constrains se han seleccionado los siguientes botones, leds y switches.
+<img width="600" height="376" alt="basys-3-2" src="https://github.com/user-attachments/assets/4bd95b72-2fb7-46a4-824c-b82eb227b8e9" />
+
 
 ### 5.1. Carga de operandos
+La carga de los operandos se hace mediante primero su seleccion de bits en los switches W13 a v17, y luego presionando el boton del operando deseado
+sea A o B, mapeados en las teclas izquierda y centro del pad.
 ### 5.2. Selección de operación
+La carga de la operacion se realiza de la misma manera que los operandos pero ahora presionando el boton de OP, mapeado en la tecla derecha del pad.
 ### 5.3. Visualización del resultado y flags
+Para el muestreo del resultado de la operación se hacen uso de los leds del lado derecho de la placa, agregando 3 leds intercalados del lado izquierdo 
+para mostrar las flags de resultado cero, carry y overflow. Notese que al iniciar el programa la flag de cero estará encendida.
 
 ## 6. Verificación
 ### 6.1. Testbench
@@ -230,6 +239,6 @@ El análisis temporal realizado en Vivado muestra que todas las restricciones te
 El valor obtenido WPWS = 4,5 ns, nos indica que en el peor caso de ancho de pulso todavía posee un margen positivo de 4,5 ns respecto del mínimo requerido por la FPGA.
 
 
-## 9. Conclusiones
+## 9. Pruebas en placa
 
 
