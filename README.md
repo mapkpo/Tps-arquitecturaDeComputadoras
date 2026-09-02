@@ -204,6 +204,10 @@ Instanciar ALU:
 
 
 ## 5. Implementación sobre Basys 3
+# Esquemático
+
+<img width="1762" height="916" alt="image" src="https://github.com/user-attachments/assets/11107f98-3289-4e47-a204-5158d432bd5e" />
+
 ### 5.1. Carga de operandos
 ### 5.2. Selección de operación
 ### 5.3. Visualización del resultado y flags
