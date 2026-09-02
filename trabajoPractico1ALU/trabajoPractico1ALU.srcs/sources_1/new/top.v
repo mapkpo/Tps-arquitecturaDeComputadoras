@@ -10,6 +10,7 @@ module top #(
     input wire                  i_btn_A,
     input wire                  i_btn_B,
     input wire                  i_btn_OP,
+    input wire                  i_btn_RST,
 
     output wire [NB_BITS-1:0]   o_leds,
 
@@ -33,7 +34,8 @@ module top #(
         .i_clk(i_clk),
         .i_enable(i_btn_A),
         .i_D(i_switches),
-        .o_Q(A)
+        .o_Q(A),
+        .i_rst(i_btn_RST)
     );
 
 
@@ -47,7 +49,8 @@ module top #(
         .i_clk(i_clk),
         .i_enable(i_btn_B),
         .i_D(i_switches),
-        .o_Q(B)
+        .o_Q(B),
+        .i_rst(i_btn_RST)
     );
 
 
@@ -61,7 +64,8 @@ module top #(
         .i_clk(i_clk),
         .i_enable(i_btn_OP),
         .i_D(i_switches[5:0]),
-        .o_Q(op)
+        .o_Q(op),
+        .i_rst(i_btn_RST)
     );
 
 

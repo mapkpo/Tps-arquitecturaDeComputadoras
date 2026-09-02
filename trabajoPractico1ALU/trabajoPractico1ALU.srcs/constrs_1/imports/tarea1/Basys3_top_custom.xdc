@@ -84,6 +84,12 @@ set_property IOSTANDARD LVCMOS33 [get_ports i_btn_B]
 set_property PACKAGE_PIN T17 [get_ports i_btn_OP]
 set_property IOSTANDARD LVCMOS33 [get_ports i_btn_OP]
 
+## BTN UP - reset general
+## T18
+set_property PACKAGE_PIN T18 [get_ports i_btn_RST]
+set_property IOSTANDARD LVCMOS33 [get_ports i_btn_RST]
+
+
 
 ###############################################################################
 ## LEDs - RESULTADO DE LA ALU
@@ -127,15 +133,15 @@ set_property IOSTANDARD LVCMOS33 [get_ports {o_leds[7]}]
 ###############################################################################
 
 ## LED8 - ZERO
-set_property PACKAGE_PIN V13 [get_ports o_zero]
+set_property PACKAGE_PIN U3 [get_ports o_zero]
 set_property IOSTANDARD LVCMOS33 [get_ports o_zero]
 
 
 ## LED9 - CARRY
-set_property PACKAGE_PIN V3 [get_ports o_carry]
+set_property PACKAGE_PIN N3 [get_ports o_carry]
 set_property IOSTANDARD LVCMOS33 [get_ports o_carry]
 
 
 ## LED10 - OVERFLOW
-set_property PACKAGE_PIN W3 [get_ports o_overflow]
+set_property PACKAGE_PIN L1 [get_ports o_overflow]
 set_property IOSTANDARD LVCMOS33 [get_ports o_overflow]
