@@ -28,10 +28,12 @@ Implementar conexión UART para conectarnos con la ALU a la pc en la FPGA. <br>
 
 
 
+## 7. Análisis temporal
+El análisis temporal realizado en Vivado muestra que todas las restricciones temporales se cumplen, sin violaciones de setup (dato que llega demasiado tarde al flip-flop) ni hold (dato que cambia demasiado rápido después del flanco). No se registraron endpoints fallidos y el diseño presenta un margen positivo en el ancho de pulso, por lo que puede implementarse correctamente con el reloj definido.
 
+<img width="934" height="217" alt="image" src="https://github.com/user-attachments/assets/3c9d1960-d179-4871-b488-74d4fff31d67" />
 
-
-
+El valor obtenido WPWS = 4,5 ns, nos indica que en el peor caso de ancho de pulso todavía posee un margen positivo de 4,5 ns respecto del mínimo requerido por la FPGA.
 
 
 
