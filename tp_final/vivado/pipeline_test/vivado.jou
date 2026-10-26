@@ -1,0 +1,45 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Mon Oct 26 10:28:49 2026
+# Process ID         : 24448
+# Current directory  : C:/Users/Misha/Desktop/tp_final/vivado/pipeline_test
+# Command line       : vivado.exe -gui_launcher_event rodinguilauncherevent7672 C:\Users\Misha\Desktop\tp_final\vivado\pipeline_test\tp_final.xpr
+# Log file           : C:/Users/Misha/Desktop/tp_final/vivado/pipeline_test/vivado.log
+# Journal file       : C:/Users/Misha/Desktop/tp_final/vivado/pipeline_test\vivado.jou
+# Running On         : DESKTOP-POAFI82
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 19045
+# Processor Detail   : AMD Ryzen 5 5600 6-Core Processor              
+# CPU Frequency      : 3500 MHz
+# CPU Physical cores : 6
+# CPU Logical cores  : 12
+# Host memory        : 34282 MB
+# Swap memory        : 18253 MB
+# Total Virtual      : 52535 MB
+# Available Virtual  : 25673 MB
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/Misha/Desktop/tp_final/vivado/pipeline_test/tp_final.xpr
+update_compile_order -fileset sources_1
+open_run impl_1
+close_design
+open_run synth_1 -name synth_1
+close_design
+synth_design -rtl -rtl_skip_mlo -name rtl_1
+close_design
+open_run impl_1
+synth_design -rtl -rtl_skip_mlo -name rtl_1
+close_design
+# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
+set_property source_mgmt_mode None [current_project]
+set_property top tb_rv32_pipeline_rv32i [get_filesets sim_1]
+set_property top_lib xil_defaultlib [get_filesets sim_1]
+# Re-enabling previously disabled source management mode.
+set_property source_mgmt_mode All [current_project]
+update_compile_order -fileset sim_1
+launch_simulation
+source tb_rv32_pipeline_rv32i.tcl
+close_sim

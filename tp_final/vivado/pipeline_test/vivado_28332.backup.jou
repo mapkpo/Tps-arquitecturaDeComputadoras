@@ -1,0 +1,27 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sun Oct 25 15:14:13 2026
+# Process ID         : 28332
+# Current directory  : C:/Users/Misha/Desktop/tp_final/vivado/pipeline_test
+# Command line       : vivado.exe -gui_launcher_event rodinguilauncherevent24720 C:\Users\Misha\Desktop\tp_final\vivado\pipeline_test\tp_final.xpr
+# Log file           : C:/Users/Misha/Desktop/tp_final/vivado/pipeline_test/vivado.log
+# Journal file       : C:/Users/Misha/Desktop/tp_final/vivado/pipeline_test\vivado.jou
+# Running On         : DESKTOP-POAFI82
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 19045
+# Processor Detail   : AMD Ryzen 5 5600 6-Core Processor              
+# CPU Frequency      : 3500 MHz
+# CPU Physical cores : 6
+# CPU Logical cores  : 12
+# Host memory        : 34282 MB
+# Swap memory        : 18253 MB
+# Total Virtual      : 52535 MB
+# Available Virtual  : 26526 MB
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/Misha/Desktop/tp_final/vivado/pipeline_test/tp_final.xpr
+update_compile_order -fileset sources_1
+open_run impl_1

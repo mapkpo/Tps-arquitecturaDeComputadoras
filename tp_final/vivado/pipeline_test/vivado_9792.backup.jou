@@ -1,0 +1,51 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sat Oct 24 19:04:58 2026
+# Process ID         : 9792
+# Current directory  : C:/Users/Misha/Desktop/tp_final/vivado/pipeline_test
+# Command line       : vivado.exe -gui_launcher_event rodinguilauncherevent17704 C:\Users\Misha\Desktop\tp_final\vivado\pipeline_test\tp_final.xpr
+# Log file           : C:/Users/Misha/Desktop/tp_final/vivado/pipeline_test/vivado.log
+# Journal file       : C:/Users/Misha/Desktop/tp_final/vivado/pipeline_test\vivado.jou
+# Running On         : DESKTOP-POAFI82
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 19045
+# Processor Detail   : AMD Ryzen 5 5600 6-Core Processor              
+# CPU Frequency      : 3500 MHz
+# CPU Physical cores : 6
+# CPU Logical cores  : 12
+# Host memory        : 34282 MB
+# Swap memory        : 18253 MB
+# Total Virtual      : 52535 MB
+# Available Virtual  : 27137 MB
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/Misha/Desktop/tp_final/vivado/pipeline_test/tp_final.xpr
+update_compile_order -fileset sources_1
+synth_design -rtl -rtl_skip_mlo -name rtl_1
+close_design
+open_run synth_1 -name synth_1
+close_design
+open_run impl_1
+open_run synth_1 -name synth_1
+close_design
+open_run synth_1 -name synth_1
+current_design impl_1
+close_design
+close_design
+open_run impl_1
+close_design
+open_run impl_1
+open_hw_manager
+connect_hw_server -allow_non_jtag
+open_hw_target
+set_property PROGRAM.FILE {C:/Users/Misha/Desktop/tp_final/vivado/pipeline_test/tp_final.runs/impl_1/top_tp_final.bit} [get_hw_devices xc7a35t_0]
+current_hw_device [get_hw_devices xc7a35t_0]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7a35t_0] 0]
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {C:/Users/Misha/Desktop/tp_final/vivado/pipeline_test/tp_final.runs/impl_1/top_tp_final.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
