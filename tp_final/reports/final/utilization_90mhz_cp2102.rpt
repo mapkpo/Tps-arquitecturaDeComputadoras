@@ -1,0 +1,35 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Tue Oct 13 00:25:37 2026
+| Host         : DESKTOP-S8C9C6V running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file {C:/Users/Misha/Documents/arquitectura de computadoras misha/tp_final/reports/final/utilization_90mhz_cp2102.rpt}
+| Design       : top_tp_final
+| Device       : xc7a35tcpg236-1
+| Speed File   : -1
+| Design State : Routed
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++-------------------+--------------------------------+------------+------------+---------+------+------+--------+--------+------------+
+|      Instance     |             Module             | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs | RAMB36 | RAMB18 | DSP Blocks |
++-------------------+--------------------------------+------------+------------+---------+------+------+--------+--------+------------+
+| top_tp_final      |                          (top) |       2477 |       2477 |       0 |    0 | 2207 |      2 |      0 |          0 |
+|   (top_tp_final)  |                          (top) |          0 |          0 |       0 |    0 |   34 |      0 |      0 |          0 |
+|   CONTROLLER      | pipeline_uart_smoke_controller |        232 |        232 |       0 |    0 |  315 |      0 |      0 |          0 |
+|   CORE            |             rv32_pipeline_core |       2159 |       2159 |       0 |    0 | 1768 |      0 |      0 |          0 |
+|     (CORE)        |             rv32_pipeline_core |       1163 |       1163 |       0 |    0 |  680 |      0 |      0 |          0 |
+|     REGISTER_FILE |             rv32_register_file |        997 |        997 |       0 |    0 | 1088 |      0 |      0 |          0 |
+|   UART            |                           uart |         55 |         55 |       0 |    0 |   81 |      0 |      0 |          0 |
++-------------------+--------------------------------+------------+------------+---------+------+------+--------+--------+------------+
+* Note: The sum of lower-level cells may be larger than their parent cells total, due to cross-hierarchy LUT combining
+
+
