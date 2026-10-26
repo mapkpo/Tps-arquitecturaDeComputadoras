@@ -1,6 +1,16 @@
 # TP final 2026 - Plan de arquitectura y decisiones
 
-Estado: propuesta base para iniciar el diseño. Las decisiones de este documento se consideran aceptadas salvo que una prueba de simulación, síntesis o placa obligue a revisarlas.
+Estado: plan activo de implementación. Las decisiones de este documento se consideran aceptadas salvo que una prueba de simulación, síntesis o placa obligue a revisarlas.
+
+Avance al 2026-10-12: UART, ALU, banco de registros, decoder/inmediatos, IMEM/DMEM, hazards, las 32 instrucciones obligatorias, el control de ejecución y el snapshot completo están validados físicamente. La frecuencia final adoptada es **90 MHz** mediante MMCM y cumple timing. Ya existe un cliente Python reutilizable y una primera GUI PySide6 con conexión, carga `.hex/.bin`, controles, registros, DMEM y visualización desensamblada del pipeline; queda validarla visualmente con la placa y luego implementar el ensamblador.
+
+## Indicaciones confirmadas por el profesor
+
+- No hace falta implementar caché.
+- Las escrituras deben realizarse en un flanco del clock y las lecturas en el opuesto. Se adopta escritura en flanco positivo y lectura en flanco negativo.
+- No es obligatorio alcanzar 100 MHz; el profesor confirmó que puede reducirse la frecuencia si el cierre de timing lo requiere.
+- Al incorporar el snapshot completo, el diseño dejó de cerrar timing a 100 MHz: el reporte post-route dio WNS `-0.184 ns`. Por este motivo se fijó la frecuencia interna en **80 MHz**, generada con MMCM desde los 100 MHz de la Basys 3. A 80 MHz el diseño cierra timing con WNS `+0.402 ns`, TNS `0.000 ns`, WHS `+0.037 ns` y THS `0.000 ns`.
+- Ensayo posterior: la variante de **90 MHz** cierra timing post-route, con WNS `+0.376 ns`, TNS `0.000 ns`, WHS `+0.039 ns` y THS `0.000 ns`, y quedó validada físicamente en la Basys 3 mediante el test completo de snapshot.
 
 ## 1. Objetivo del sistema
 
@@ -24,6 +34,8 @@ El sistema completo tendrá tres bloques principales:
   - MEM: acceso a memoria de datos.
   - WB: escritura del resultado en el banco de registros.
 - El reloj físico no se divide ni se bloquea con lógica combinacional. Todos los módulos usan el mismo clock y señales de clock-enable.
+- No se implementa memoria caché; las memorias de instrucciones y datos se acceden directamente.
+- Las escrituras se realizan en el flanco positivo y las lecturas en el flanco negativo del mismo clock.
 - Deben resolverse riesgos estructurales, de datos y de control.
 - Al finalizar un programa, el pipeline debe quedar vacío.
 
@@ -74,7 +86,7 @@ La PC debe poder:
 - Generar reportes de utilización y timing de Vivado.
 - Identificar el camino crítico usando timing posterior a implementación, no solamente síntesis.
 - Informar WNS/TNS, demora del camino crítico, uso de LUT, FF y BRAM, frecuencia máxima estimada, ciclos ejecutados y CPI de programas de prueba.
-- La frecuencia final se decide después de cerrar timing. Si se cambia respecto de los 100 MHz de la placa, se usará Clock Wizard/MMCM; nunca un divisor de reloj implementado con lógica.
+- La frecuencia final adoptada es **90 MHz**, validada físicamente y con WNS post-route `+0.376 ns`. Se genera mediante MMCM a partir de los 100 MHz de la placa; no se usa un divisor implementado con lógica. La prueba a 80 MHz queda documentada como antecedente del cierre de timing.
 
 ## 3. Arquitectura elegida
 
@@ -94,7 +106,8 @@ La PC debe poder:
 
 - **Pipeline:** cinco etapas clásicas, single-issue e in-order.
 - **Memorias Harvard:** memoria de instrucciones y memoria de datos separadas. Esto elimina el riesgo estructural entre IF y MEM.
-- **Banco de registros:** 32 registros de 32 bits, dos lecturas combinacionales y una escritura sincrónica. `x0` siempre vale cero.
+- **Banco de registros:** 32 registros de 32 bits y dos puertos de lectura. La escritura de WB ocurre en el flanco positivo y las lecturas de ID se registran en el flanco negativo. `x0` siempre vale cero.
+- **Convención de flancos:** los latches del pipeline y las escrituras de estado usan el flanco positivo; las lecturas sincrónicas del banco de registros, IMEM y DMEM usan el flanco negativo. No se generan clocks derivados: todos reciben el mismo clock físico.
 - **Validación:** cada latch de pipeline lleva un bit `valid`. Las instrucciones anuladas no pueden escribir registros ni memoria.
 - **Forwarding:** desde EX/MEM y MEM/WB hacia las entradas de EX. También se reenvía el dato de un `store`.
 - **Load-use:** una dependencia inmediata de un `load` genera un stall de un ciclo e inserta una burbuja.
@@ -109,9 +122,11 @@ No existen riesgos WAR ni WAW porque el procesador es in-order, emite una instru
 
 - **IMEM:** 4 KiB, 1024 palabras de 32 bits, direccionada por palabra.
 - **DMEM:** 4 KiB, direccionada por byte y con enables por byte para `sb`, `sh` y `sw`.
+- **Caché:** no se implementa. IF accede directamente a IMEM y MEM accede directamente a DMEM.
 - **Endianness:** little-endian.
 - **Alineación:** `lw/sw` requieren múltiplo de 4 y `lh/lhu/sh` múltiplo de 2. Un acceso desalineado genera una parada por error; no se implementan accesos que crucen palabras.
 - **Implementación:** memorias sin reset masivo en RTL para favorecer inferencia de BRAM. El borrado, cuando se solicita, lo realiza una FSM escribiendo una dirección por ciclo.
+- **Flancos de memoria:** escrituras en flanco positivo y lecturas en flanco negativo. La inferencia de BRAM y el timing de medio ciclo se verificarán expresamente en Vivado.
 - **Límite de programa:** la Debug Unit conserva `program_words`. Un fetch fuera de la imagen cargada se trata como fin anormal de programa y vacía el pipeline.
 
 Los tamaños son parámetros y pueden modificarse si la utilización de BRAM o los programas de prueba lo requieren.
@@ -252,6 +267,12 @@ Se reutilizan la detección de puertos, la configuración `pyserial` y el manejo
 - `uart.v`, incluidos sus buffers y flags de overrun/frame error.
 - Pines de clock, reset y UART del XDC de Basys 3.
 - Testbench UART y sus tareas como BFM para las pruebas de integración.
+
+La interfaz física UART tiene dos variantes de bitstream, sin cambios en el
+RTL ni en el software: el conversor integrado usa `B18/A18` y el CP2102 externo
+usa `JA1/J1` para RX y `JA2/L2` para TX. En ambos casos se mantienen 115200
+baud, 8N1 y niveles lógicos de 3,3 V. La variante CP2102 reutiliza el cableado
+ya validado en el TP2.
 - Scripts Tcl de síntesis y generación de reportes.
 
 La UART es parametrizable. Se comenzará con **115200 baud, 8N1 y oversampling 16x**; a 100 MHz el error de baud es suficientemente pequeño para probar en placa. Si las pruebas físicas no son estables, el protocolo permite volver a 19200 sin rediseñar el core.
@@ -372,7 +393,6 @@ El TP se considera terminado cuando todos los tests pasan, la placa puede cargar
 
 Sólo quedan abiertas decisiones que dependen de evidencia:
 
-- Frecuencia final del clock después del timing post-route.
 - Necesidad de FIFO UART después de la prueba de tráfico continuo.
 - Tamaño final de IMEM/DMEM si los programas o la utilización justifican cambiar 4 KiB.
 
