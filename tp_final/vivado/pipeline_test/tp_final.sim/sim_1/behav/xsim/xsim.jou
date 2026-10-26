@@ -1,0 +1,25 @@
+#-----------------------------------------------------------
+# xsim v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Mon Oct 12 22:56:16 2026
+# Process ID         : 6272
+# Current directory  : C:/Users/Misha/Documents/arquitectura de computadoras misha/tp_final/vivado/pipeline_test/tp_final.sim/sim_1/behav/xsim
+# Command line       : xsim.exe -mode tcl -source {xsim.dir/tb_top_pipeline_uart_smoke_behav/xsim_script.tcl}
+# Log file           : C:/Users/Misha/Documents/arquitectura de computadoras misha/tp_final/vivado/pipeline_test/tp_final.sim/sim_1/behav/xsim/xsim.log
+# Journal file       : C:/Users/Misha/Documents/arquitectura de computadoras misha/tp_final/vivado/pipeline_test/tp_final.sim/sim_1/behav/xsim\xsim.jou
+# Running On         : DESKTOP-S8C9C6V
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 19045
+# Processor Detail   : Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz
+# CPU Frequency      : 2208 MHz
+# CPU Physical cores : 6
+# CPU Logical cores  : 12
+# Host memory        : 12717 MB
+# Swap memory        : 2774 MB
+# Total Virtual      : 15492 MB
+# Available Virtual  : 4920 MB
+#-----------------------------------------------------------
+source xsim.dir/tb_top_pipeline_uart_smoke_behav/xsim_script.tcl
+run -all

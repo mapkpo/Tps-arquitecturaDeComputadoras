@@ -1,0 +1,18 @@
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/Misha/Desktop/tp_final/rtl/core/rv32_alu.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module rv32_alu
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/Misha/Desktop/tp_final/rtl/memory/rv32_data_memory.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module rv32_data_memory
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/Misha/Desktop/tp_final/rtl/core/rv32_decoder.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module rv32_decoder
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/Misha/Desktop/tp_final/rtl/core/rv32_immediate_generator.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module rv32_immediate_generator
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/Misha/Desktop/tp_final/rtl/memory/rv32_instruction_memory.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module rv32_instruction_memory
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/Misha/Desktop/tp_final/rtl/core/rv32_pipeline_core.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module rv32_pipeline_core
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/Misha/Desktop/tp_final/rtl/core/rv32_register_file.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module rv32_register_file
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/Misha/Desktop/tp_final/sim/integration/tb_rv32_pipeline_rv32i.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_rv32_pipeline_rv32i
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Misha/Desktop/tp_final/vivado/pipeline_test/tp_final.sim/sim_1/behav/xsim/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl

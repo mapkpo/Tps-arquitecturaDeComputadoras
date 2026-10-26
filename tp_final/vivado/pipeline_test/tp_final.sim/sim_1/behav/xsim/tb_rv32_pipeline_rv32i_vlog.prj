@@ -1,0 +1,16 @@
+# compile verilog/system verilog design source files
+sv xil_defaultlib  --include "../../../../../../../../../../AMDDesignTools/2025.2/Vivado/data/rsb/busdef" \
+"../../../../../../rtl/core/rv32_alu.sv" \
+"../../../../../../rtl/memory/rv32_data_memory.sv" \
+"../../../../../../rtl/core/rv32_decoder.sv" \
+"../../../../../../rtl/core/rv32_immediate_generator.sv" \
+"../../../../../../rtl/memory/rv32_instruction_memory.sv" \
+"../../../../../../rtl/core/rv32_pipeline_core.sv" \
+"../../../../../../rtl/core/rv32_register_file.sv" \
+"../../../../../../sim/integration/tb_rv32_pipeline_rv32i.sv" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

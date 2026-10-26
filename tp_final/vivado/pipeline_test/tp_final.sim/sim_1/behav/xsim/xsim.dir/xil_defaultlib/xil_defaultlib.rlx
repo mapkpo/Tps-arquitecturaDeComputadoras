@@ -1,0 +1,13 @@
+0.7
+2020.2
+Nov 14 2025
+19:37:27
+C:/Users/Misha/Desktop/tp_final/rtl/core/rv32_alu.sv,1791410044,systemVerilog,,C:/Users/Misha/Desktop/tp_final/rtl/memory/rv32_data_memory.sv,,rv32_alu,,uvm,../../../../../../../../../../AMDDesignTools/2025.2/Vivado/data/rsb/busdef,,,,,
+C:/Users/Misha/Desktop/tp_final/rtl/core/rv32_decoder.sv,1791841918,systemVerilog,,C:/Users/Misha/Desktop/tp_final/rtl/core/rv32_immediate_generator.sv,,rv32_decoder,,uvm,../../../../../../../../../../AMDDesignTools/2025.2/Vivado/data/rsb/busdef,,,,,
+C:/Users/Misha/Desktop/tp_final/rtl/core/rv32_immediate_generator.sv,1791841918,systemVerilog,,C:/Users/Misha/Desktop/tp_final/rtl/memory/rv32_instruction_memory.sv,,rv32_immediate_generator,,uvm,../../../../../../../../../../AMDDesignTools/2025.2/Vivado/data/rsb/busdef,,,,,
+C:/Users/Misha/Desktop/tp_final/rtl/core/rv32_pipeline_core.sv,1791856122,systemVerilog,,C:/Users/Misha/Desktop/tp_final/rtl/core/rv32_register_file.sv,,rv32_pipeline_core,,uvm,../../../../../../../../../../AMDDesignTools/2025.2/Vivado/data/rsb/busdef,,,,,
+C:/Users/Misha/Desktop/tp_final/rtl/core/rv32_register_file.sv,1791844570,systemVerilog,,C:/Users/Misha/Desktop/tp_final/sim/integration/tb_rv32_pipeline_rv32i.sv,,rv32_register_file,,uvm,../../../../../../../../../../AMDDesignTools/2025.2/Vivado/data/rsb/busdef,,,,,
+C:/Users/Misha/Desktop/tp_final/rtl/memory/rv32_data_memory.sv,1791854477,systemVerilog,,C:/Users/Misha/Desktop/tp_final/rtl/core/rv32_decoder.sv,,rv32_data_memory,,uvm,../../../../../../../../../../AMDDesignTools/2025.2/Vivado/data/rsb/busdef,,,,,
+C:/Users/Misha/Desktop/tp_final/rtl/memory/rv32_instruction_memory.sv,1791843456,systemVerilog,,C:/Users/Misha/Desktop/tp_final/rtl/core/rv32_pipeline_core.sv,,rv32_instruction_memory,,uvm,../../../../../../../../../../AMDDesignTools/2025.2/Vivado/data/rsb/busdef,,,,,
+C:/Users/Misha/Desktop/tp_final/sim/integration/tb_rv32_pipeline_rv32i.sv,1791852822,systemVerilog,,,,tb_rv32_pipeline_rv32i,,uvm,../../../../../../../../../../AMDDesignTools/2025.2/Vivado/data/rsb/busdef,,,,,
+C:/Users/Misha/Desktop/tp_final/vivado/pipeline_test/tp_final.sim/sim_1/behav/xsim/glbl.v,1756381829,verilog,,,,glbl,,uvm,,,,,,
