@@ -112,10 +112,10 @@ La memoria esta separada en dos bloques, datos e instrucciones, las cuales fuero
 
 El clock se genera mediante el modulo MMCM que duplica los 100 MHz a 900 y luego los dividimos por 10 para obtener 90 MHz
 
-### N. Esquematico
+### 3.1 Esquematico
 ![alt text](image-3.png)
 
-### N. Análisis temporal
+### 3.2 Análisis temporal
 El analisis temporal realizado por vivado nos mostró que a una frecuencia de 100 Mhz, no cerrabamos el timing, el WNS estaba en negativo con -0.184 nanosegundos.
 
 Bajamos la frecueciencia mediante el clock generator a 90 Mhz y cerramos timings, con un pequeño margen pero funcional.
