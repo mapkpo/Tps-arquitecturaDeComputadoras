@@ -18,6 +18,41 @@ El trabajo contempla también el desarrollo de software en Python para traducir 
 
 Finalmente, se debe verificar el funcionamiento de los módulos mediante simulaciones y pruebas de integración, y comprobar el sistema completo sobre la placa. La evaluación incluye el análisis de utilización de recursos y del comportamiento temporal posterior a la implementación en Vivado, identificando el camino crítico y una frecuencia de operación que cumpla las restricciones de timing. También se busca comprobar la carga sucesiva de distintos programas, el funcionamiento de los modos continuo y paso a paso, y la finalización con el pipeline vacío.
 
+## Organización del proyecto
+
+El proyecto se encuentra organizado de la siguiente manera:
+
+```text
+tp_final/
+│
+├── rtl/
+│   ├── common/        # Comunicación UART
+│   ├── core/          # Núcleo del procesador RISC-V
+│   ├── debug/         # Interfaz de control y monitoreo
+│   ├── memory/        # Memorias de instrucciones y datos
+│   └── top/           # Integración de los módulos
+│
+├── sim/
+│   ├── unit/          # Pruebas unitarias
+│   ├── integration/   # Pruebas de integración
+│   └── programs/      # Programas de prueba
+│
+├── sw/
+│   ├── client/        # Cliente y herramientas de comunicación
+│   ├── gui/           # Interfaz gráfica
+│   ├── programs/      # Programas en ensamblador
+│   └── tests/         # Pruebas del software
+│
+├── constraints/       # Restricciones de la FPGA (XDC)
+├── scripts/           # Automatización mediante Tcl
+├── docs/              # Documentación y validación
+├── reports/           # Reportes de implementación
+├── output/            # Archivos de configuración (.bit)
+└── vivado/            # Proyecto y archivos de Vivado
+```
+
+Esta organización permite separar el diseño del hardware, su verificación mediante simulaciones y el software auxiliar utilizado para interactuar con el procesador.
+
 ## 2. Funcionamiento del sistema
 
 El sistema permite cargar un programa desde una computadora, ejecutarlo en el procesador implementado sobre la Basys 3 y observar su estado interno. Para ello se organiza en tres bloques principales: el procesador RISC-V, la unidad de depuración o Debug Unit y el software de la computadora. La comunicación entre la computadora y la FPGA se realiza mediante UART, reutilizando el subsistema desarrollado en el TP2.
